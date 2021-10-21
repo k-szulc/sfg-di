@@ -9,7 +9,6 @@ import xyz.itbs.sfgdi.repositories.EnglishGreetingRepository;
 import xyz.itbs.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import xyz.itbs.sfgdi.services.*;
 
-@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {

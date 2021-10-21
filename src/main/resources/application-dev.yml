@@ -1,0 +1,4 @@
+itbs:
+  username: DEVdbSuperuser
+  password: DEVdbPassword
+  jdbcurl: jdbc:oracle:thin:@DEV:1597/INSTANCE

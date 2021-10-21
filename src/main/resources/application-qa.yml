@@ -1,0 +1,4 @@
+itbs:
+  username: QAsuperuser
+  password: QAdbPassword
+  jdbcurl: jdbc:oracle:thin:@QA:1597/INSTANCE

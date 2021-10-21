@@ -1,13 +1,32 @@
 package xyz.itbs.sfgdi.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
+import xyz.itbs.pets.PetService;
+import xyz.itbs.pets.PetServiceFactory;
+import xyz.itbs.sfgdi.repositories.EnglishGreetingRepository;
+import xyz.itbs.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import xyz.itbs.sfgdi.services.*;
 
+@ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
+
+    @Bean
+    PetServiceFactory petServiceFactory(){
+        return new PetServiceFactory();
+    }
+
+    @Profile("dog")
+    @Bean
+    PetService dogPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("dog");
+    }
+
+    @Profile({"cat","default"})
+    @Bean
+    PetService catPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("cat");
+    }
 
     @Profile({"ES","default"})
     @Bean("i18nService")
@@ -15,10 +34,15 @@ public class GreetingServiceConfig {
         return new I18nSpanishGreetingService();
     }
 
+    @Bean
+    EnglishGreetingRepository englishGreetingRepository(){
+        return new EnglishGreetingRepositoryImpl();
+    }
+
     @Profile("EN")
     @Bean
-    I18nEnglishGreetingService i18nService(){
-        return new I18nEnglishGreetingService();
+    I18nEnglishGreetingService i18nService(EnglishGreetingRepository englishGreetingRepository){
+        return new I18nEnglishGreetingService(englishGreetingRepository);
     }
 
     @Primary
@@ -27,10 +51,10 @@ public class GreetingServiceConfig {
         return new PrimaryGreetingService();
     }
 
-    @Bean
-    ConstructorGreetingService constructorGreetingService(){
-        return new ConstructorGreetingService();
-    }
+//    @Bean
+//    ConstructorGreetingService constructorGreetingService(){
+//        return new ConstructorGreetingService();
+//    }
 
     @Bean
     PropertyGreetingService propertyGreetingService(){

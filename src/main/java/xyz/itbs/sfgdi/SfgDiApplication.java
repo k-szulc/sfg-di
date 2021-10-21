@@ -1,10 +1,12 @@
 package xyz.itbs.sfgdi;
 
-import org.springframework.boot.ApplicationContextFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import xyz.itbs.sfgdi.controllers.*;
+import xyz.itbs.sfgdi.services.DefaultBean;
+import xyz.itbs.sfgdi.services.PrototypeBean;
+import xyz.itbs.sfgdi.services.SingletonBean;
 
 @SpringBootApplication
 public class SfgDiApplication {
@@ -47,6 +49,20 @@ public class SfgDiApplication {
 				(ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 
 		System.out.println(constructorInjectedController.getGreeting());
+
+
+		System.out.println("-------- Bean Scopes");
+		DefaultBean singletonBean1 = ctx.getBean(SingletonBean.class);
+		System.out.println(singletonBean1.getMyScope());
+		DefaultBean singletonBean2 = ctx.getBean(SingletonBean.class);
+		System.out.println(singletonBean2.getMyScope());
+
+		DefaultBean prototypeBean1 = ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBean1.getMyScope());
+		DefaultBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
+		System.out.println(prototypeBean2.getMyScope());
+
+
 	}
 
 }

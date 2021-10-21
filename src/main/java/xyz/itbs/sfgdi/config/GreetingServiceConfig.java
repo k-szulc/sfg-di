@@ -41,6 +41,7 @@ public class GreetingServiceConfig {
         return petServiceFactory.getPetService("cat");
     }
 
+
     @Profile({"ES","default"})
     @Bean("i18nService")
     I18nSpanishGreetingService i18nSpanishGreetingService(){
@@ -51,6 +52,7 @@ public class GreetingServiceConfig {
     EnglishGreetingRepository englishGreetingRepository(){
         return new EnglishGreetingRepositoryImpl();
     }
+
 
     @Profile("EN")
     @Bean

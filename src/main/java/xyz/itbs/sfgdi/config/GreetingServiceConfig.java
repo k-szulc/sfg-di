@@ -2,12 +2,30 @@ package xyz.itbs.sfgdi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import xyz.itbs.sfgdi.services.ConstructorGreetingService;
-import xyz.itbs.sfgdi.services.PropertyGreetingService;
-import xyz.itbs.sfgdi.services.SetterGreetingService;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
+import xyz.itbs.sfgdi.services.*;
 
 @Configuration
 public class GreetingServiceConfig {
+
+    @Profile({"ES","default"})
+    @Bean("i18nService")
+    I18nSpanishGreetingService i18nSpanishGreetingService(){
+        return new I18nSpanishGreetingService();
+    }
+
+    @Profile("EN")
+    @Bean
+    I18nEnglishGreetingService i18nService(){
+        return new I18nEnglishGreetingService();
+    }
+
+    @Primary
+    @Bean
+    PrimaryGreetingService primaryGreetingService(){
+        return new PrimaryGreetingService();
+    }
 
     @Bean
     ConstructorGreetingService constructorGreetingService(){

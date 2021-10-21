@@ -1,7 +1,7 @@
 package xyz.itbs.sfgdi.controllers;
 
 import org.springframework.stereotype.Controller;
-import xyz.itbs.pets.PetService;
+import com.szu.pets.PetService;
 
 @Controller
 public class PetController {

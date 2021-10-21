@@ -1,4 +1,4 @@
-package xyz.itbs.pets;
+package com.szu.pets;
 
 public class DogPetService implements PetService {
     @Override

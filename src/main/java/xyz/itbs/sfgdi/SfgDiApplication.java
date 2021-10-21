@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import xyz.itbs.sfgdi.controllers.*;
+import xyz.itbs.sfgdi.datasource.FakeDataSource;
 import xyz.itbs.sfgdi.services.DefaultBean;
 import xyz.itbs.sfgdi.services.PrototypeBean;
 import xyz.itbs.sfgdi.services.SingletonBean;
@@ -62,6 +63,11 @@ public class SfgDiApplication {
 		DefaultBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
 		System.out.println(prototypeBean2.getMyScope());
 
+		System.out.println("-------- Data Source");
+		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+		System.out.println("DB Username :: " + fakeDataSource.getUsername());
+		System.out.println("DB Password :: " + fakeDataSource.getPassword());
+		System.out.println("DB URL :: " + fakeDataSource.getJdbcurl());
 
 	}
 

@@ -1,4 +1,4 @@
-package xyz.itbs.sfgdi.services;
+package xyz.itbs.pets;
 
 public interface PetService {
 
